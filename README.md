@@ -1,5 +1,3 @@
-Live Link: [https://vercel.com/enes9103/beta-limited-e-commerce-platform/4Ez9qcmEoREpbR2hNRjiE6oZ7J4L](https://beta-limited-e-commerce-platform-3zu8tep6p-enes9103.vercel.app/)
-
 ## About The Project
 
 Project is an e-shopping application where users can search for products and view them by adding them to their cart in any quantity they want.
