@@ -17,12 +17,6 @@ Project is an e-shopping application where users can search for products and vie
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
-<!-- PROJECT OUTCOME -->
-
-## Project Outcome
-
-![Project gif](Animation_App.gif)
-
 <!-- PROJECT SKELETON -->
 
 ## Project Skeleton
@@ -78,18 +72,15 @@ This is an example of how to list things you need to use the software and how to
 
 _Below is an example of how you can instruct your audience on installing and setting up your app. This template doesn't rely on any external dependencies or services._
 
-1. Get a free API Key at [https://www.themoviedb.org/documentation/api](https://www.themoviedb.org/documentation/api)
-2. Create a new Firebase project and app. Get api key and required domain information to use in authentication processes.
-   Then create a new Realtime Database of the application. [https://firebase.google.com/](https://firebase.google.com/)
-3. Clone the repo
+1. Clone the repo
    ```sh
    git clone https://github.com/enes9103/movie_app_task_react_ts
    ```
-4. Install NPM packages
+2. Install NPM packages
    ```sh
    npm install
    ```
-5. Create .env file in home directory.
+3. Create .env file in home directory.
 
    ```sh
    REACT_APP_BETA_LIMITED_API_URL
@@ -100,10 +91,6 @@ _Below is an example of how you can instruct your audience on installing and set
 
    It is designed to be used by preparing an .env file for the project.
    The sample .env structure added to the project must be created and the Api added when the project is run.
-
-   ```
-
-   ```
 
 6. The project is ready, you can start using it now.
    You can run:
