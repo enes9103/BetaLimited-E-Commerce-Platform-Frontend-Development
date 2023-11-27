@@ -1,72 +1,169 @@
 Live Link: https://vercel.com/enes9103/beta-limited-e-commerce-platform/4Ez9qcmEoREpbR2hNRjiE6oZ7J4L
 
-# Getting Started with Create React App
+## About The Project
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Project is an e-shopping application where users can search for products and view them by adding them to their cart in any quantity they want.
 
-## Available Scripts
+<!-- DESCRİPTİON -->
 
-In the project directory, you can run:
+## Description
 
-### `npm start`
+- The project consists of a single page.
+- Products can be listed, searched and the desired product can be added to the cart in the desired quantity.
+- Products added to the cart can be viewed and deleted in the cart section.
+- Cart management is created as two structures in the code. API system and Local usage. (Storage)
+- React.js and MUI were used in the project.
+- Redux Toolkit was used in the project state management process.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+<p align="right">(<a href="#top">back to top</a>)</p>
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+<!-- PROJECT OUTCOME -->
 
-### `npm test`
+## Project Outcome
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+![Project gif](Animation_App.gif)
 
-### `npm run build`
+<!-- PROJECT SKELETON -->
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Project Skeleton
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```
+Beta-Limited (folder)
+|
+├── public
+│    └── index.html
+├── src
+│    ├── assets
+│    │     └── icons
+│    │     └── images
+│    │     └── index.js
+│    ├── components
+│    │     ├── common
+│    │     └── layouts
+│    ├── helpers
+│    │     └── StorageHelper.js
+│    ├── redux
+│    │     ├── slices
+│    │     ├── store.js
+│    ├── styles
+│    │     └── theme.js
+│    ├── App.js
+│    ├── index.js
+├── package.json
+├── package-lock-json
+├── tsconfig.json
+├── README.md
+└──.env
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+<p align="right">(<a href="#top">back to top</a>)</p>
 
-### `npm run eject`
+<!-- GETTING STARTED -->
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Getting Started
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+This is an example of how you may give instructions on setting up your project locally.
+To get a local copy up and running follow these simple example steps.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### Prerequisites
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+This is an example of how to list things you need to use the software and how to install them.
 
-## Learn More
+- npm
+  ```sh
+  npm install npm@latest -g
+  ```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### Installation
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+_Below is an example of how you can instruct your audience on installing and setting up your app. This template doesn't rely on any external dependencies or services._
 
-### Code Splitting
+1. Get a free API Key at [https://www.themoviedb.org/documentation/api](https://www.themoviedb.org/documentation/api)
+2. Create a new Firebase project and app. Get api key and required domain information to use in authentication processes.
+   Then create a new Realtime Database of the application. [https://firebase.google.com/](https://firebase.google.com/)
+3. Clone the repo
+   ```sh
+   git clone https://github.com/enes9103/movie_app_task_react_ts
+   ```
+4. Install NPM packages
+   ```sh
+   npm install
+   ```
+5. Create .env file in home directory.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+   ```sh
+   REACT_APP_BETA_LIMITED_API_URL
 
-### Analyzing the Bundle Size
+   ```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+   ### Important Reminder!!!
 
-### Making a Progressive Web App
+   It is designed to be used by preparing an .env file for the project.
+   The sample .env structure added to the project must be created and the Api added when the project is run.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+   ```
 
-### Advanced Configuration
+   ```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+6. The project is ready, you can start using it now.
+   You can run:
 
-### Deployment
+   `npm start`
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+   Runs the app in the development mode.\
+   Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-### `npm run build` fails to minify
+<p align="right">(<a href="#top">back to top</a>)</p>
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+<!-- DEVELOPMENT PROCESS -->
+
+## Project Development Process
+
+- 1: Created using React.js library.
+
+- 2: MUI was used as the css library in the project.
+
+- 3: Redux Toolkit was used as the State Management library.
+
+- 4: The application is designed with a responsive structure that can work smoothly on mobile and desktop platforms.
+
+- 6: Application shared on Github. During project preparation, development phases were committed and pushed to repo.
+
+- 8: Added README.md file after project completion.
+
+- 9: Used npm package manager during application development. Used Webpack for pre-deployment packaging.
+
+- 10: The project was finally deployed using the Netlify service.
+
+<p align="right">(<a href="#top">back to top</a>)</p>
+
+<!-- CONTRIBUTING -->
+
+## Contributing
+
+Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
+
+If you have a suggestion that would make this better, please fork the repo and create a pull request. You can also simply open an issue with the tag "enhancement".
+Don't forget to give the project a star! Thanks again!
+
+1. Fork the Project
+2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the Branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+<p align="right">(<a href="#top">back to top</a>)</p>
+
+<!-- NOTES -->
+
+## Notes
+
+- You can add additional functionalities to your app.
+
+<!-- LICENSE -->
+
+## License
+
+Distributed under the MIT License. See `LICENSE.txt` for more information.
+
+<p align="right">(<a href="#top">back to top</a>)</p>
