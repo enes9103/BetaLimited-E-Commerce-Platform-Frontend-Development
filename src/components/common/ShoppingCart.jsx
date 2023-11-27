@@ -30,7 +30,7 @@ const ShoppingCart = ({ basketItems, title_1, title_2, title_3, title_4 }) => {
 
     dispatch(deleteProductFromCard(updatedBasket));
   };
-
+  console.log(basketItems);
   return (
     <>
       <Dropdown>
@@ -38,7 +38,7 @@ const ShoppingCart = ({ basketItems, title_1, title_2, title_3, title_4 }) => {
           badgeContent={
             basketItems !== "Cart is empty." &&
             basketItems?.filter((item) => item.quantity > 0)?.length !== 0
-              ? basketItems.length
+              ? basketItems?.filter((item) => item.quantity > 0)?.length
               : 0
           }
           variant="solid"
@@ -69,7 +69,7 @@ const ShoppingCart = ({ basketItems, title_1, title_2, title_3, title_4 }) => {
               maxWidth: "360px",
             }}
           >
-            <MenuItem disablePadding>
+            <MenuItem>
               <LocalGroceryStoreOutlinedIcon
                 sx={{ fontSize: "50px", margin: "0.5rem", marginX: "auto" }}
               />
@@ -91,7 +91,7 @@ const ShoppingCart = ({ basketItems, title_1, title_2, title_3, title_4 }) => {
               maxWidth: "420px",
             }}
           >
-            <MenuItem disablePadding>
+            <MenuItem >
               <Table aria-label="basic table">
                 <thead>
                   <tr>
