@@ -56,7 +56,7 @@ const ShoppingCart = ({ basketItems, title_1, title_2, title_3, title_4 }) => {
           </MenuButton>
         </Badge>
 
-        {basketItems !== "Cart is empty." ||
+        {basketItems === "Cart is empty." ||
         basketItems?.filter((item) => item.quantity > 0)?.length === 0 ? (
           <Menu
             sx={{
