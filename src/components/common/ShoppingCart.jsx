@@ -13,26 +13,31 @@ import Dropdown from "@mui/joy/Dropdown";
 // MUI Icons
 import LocalGroceryStoreOutlinedIcon from "@mui/icons-material/LocalGroceryStoreOutlined";
 import ShoppingBagOutlinedIcon from "@mui/icons-material/ShoppingBagOutlined";
+import { deleteProductFromCard } from "../../redux/slices/ManageCardSlice";
 
-const ShoppingCart = ({
-  totalQuantity,
-  basketItems,
-  title_1,
-  title_2,
-  title_3,
-  title_4,
-}) => {
+const ShoppingCart = ({ basketItems, title_1, title_2, title_3, title_4 }) => {
   const dispatch = useDispatch();
 
+  // const handleRemoveFromBasket = (itemId) => {
+  //   dispatch(removeFromBasket(itemId));
+  // };
+
   const handleRemoveFromBasket = (itemId) => {
-    dispatch(removeFromBasket(itemId));
+    console.log(itemId);
+    const updatedBasket = basketItems.filter(
+      (item) => item.productId === itemId
+    );
+
+    dispatch(deleteProductFromCard(updatedBasket));
   };
 
   return (
     <>
       <Dropdown>
         <Badge
-          badgeContent={totalQuantity > 0 ? totalQuantity : 0}
+          badgeContent={
+            basketItems !== "Cart is empty." ? basketItems.length : 0
+          }
           variant="solid"
           sx={{ "& .MuiBadge-badge": { backgroundColor: "#c24b5a" } }}
         >
@@ -48,44 +53,7 @@ const ShoppingCart = ({
           </MenuButton>
         </Badge>
 
-        {totalQuantity > 0 ? (
-          <Menu
-            sx={{
-              paddingInline: "6px",
-              marginTop: "1rem !important",
-              maxWidth: "420px",
-            }}
-          >
-            <MenuItem disablePadding>
-              <Table aria-label="basic table">
-                <thead>
-                  <tr>
-                    <th>{title_1}</th>
-                    <th>{title_2}</th>
-                    <th>{title_3}</th>
-                    <th>{title_4}</th>
-                    <th></th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {basketItems.map((item) => (
-                    <tr key={item.id}>
-                      <td>{item.name}</td>
-                      <td>{item.quantity}</td>
-                      <td>{Number(item.price).toFixed(2)}</td>
-                      <td>{Number(item.price * item.quantity).toFixed(2)}</td>
-                      <td>
-                        <button onClick={() => handleRemoveFromBasket(item.id)}>
-                          Sil
-                        </button>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </Table>
-            </MenuItem>
-          </Menu>
-        ) : (
+        {basketItems !== "Cart is empty." && basketItems?.filter((item) => item.quantity > 0)?.length === 0 ? (
           <Menu
             sx={{
               paddingInline: "10px",
@@ -110,6 +78,50 @@ const ShoppingCart = ({
               Sepetini BetaLimited’in fırsatlarla dolu dünyasından doldurmak
               için sitemizdeki ürünleri incelemeye başlayabilirsin.
             </Typography>
+          </Menu>
+        ) : (
+          <Menu
+            sx={{
+              paddingInline: "6px",
+              marginTop: "1rem !important",
+              maxWidth: "420px",
+            }}
+          >
+            <MenuItem disablePadding>
+              <Table aria-label="basic table">
+                <thead>
+                  <tr>
+                    <th>{title_1}</th>
+                    <th>{title_2}</th>
+                    <th>{title_3}</th>
+                    <th>{title_4}</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {basketItems !== "Cart is empty." && basketItems
+                    ?.filter((item) => item.quantity > 0)
+                    .map((item) => (
+                      <tr key={item.productId}>
+                        <td>{item.name}</td>
+                        <td>{item.quantity}</td>
+                        <td>{Number(item.price).toFixed(2)}</td>
+                        <td>{Number(item.price * item.quantity).toFixed(2)}</td>
+                        <td>
+                          <button
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              handleRemoveFromBasket(item.productId);
+                            }}
+                          >
+                            Sil
+                          </button>
+                        </td>
+                      </tr>
+                    ))}
+                </tbody>
+              </Table>
+            </MenuItem>
           </Menu>
         )}
       </Dropdown>

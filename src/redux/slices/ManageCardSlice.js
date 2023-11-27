@@ -8,33 +8,38 @@ const initialState = {
   isAddProductToCardLoading: false,
   addProductToCardError: false,
   addProductToCardResp: [],
-  // addProductToCard
+  // viewProductCard
   isViewProductCardLoading: false,
   viewProductCardError: false,
   viewProductCardResp: [],
+  // deleteProductFromCard
+  isDeleteProductFromCardLoading: false,
+  deleteProductFromCardError: false,
+  deleteProductFromCardResp: [],
 };
 
 export const addProductToCard = createAsyncThunk(
   "productCard/addProductToCard",
   async (product, thunkAPI) => {
-    const {id, quantity} = product
-    const sessionId = getStorageData("Session-ID");
+    const { id, quantity } = product;
+    const sessionId = await getStorageData("Session-ID");
 
     // Get base URL from environment variable
     const baseURL = process.env.REACT_APP_BETA_LIMITED_API_URL;
 
-    // Get session ID and prepare headers
-    const headers = {
-      "Content-Type": "application/json",
-      "Session-ID": sessionId || null,
-      // "Session-ID": "7vf1imzjb",
-    };
-
     try {
-      const resp = await axios.post(`${baseURL}/add-to-cart?id=${id}`, {
-        headers,
-      });
-      return resp.data;
+      for (let i = 0; i < quantity; i++) {
+        await axios.post(
+          `${baseURL}/add-to-cart?id=${id}`,
+          {},
+          {
+            headers: {
+              "Session-Id": sessionId || null,
+            },
+          }
+        );
+      }
+      return { success: true };
     } catch (error) {
       return thunkAPI.rejectWithValue("something went wrong");
     }
@@ -49,18 +54,41 @@ export const viewProductCard = createAsyncThunk(
     // Get base URL from environment variable
     const baseURL = process.env.REACT_APP_BETA_LIMITED_API_URL;
 
-    // Get session ID and prepare headers
-    const headers = {
-      "Content-Type": "application/json",
-      "Session-ID": sessionId || null,
-      // "Session-ID": "7vf1imzjb",
-    };
-
     try {
       const resp = await axios.get(`${baseURL}/view-cart`, {
-        headers,
+        headers: {
+          "Session-Id": sessionId || null,
+        },
       });
       return resp.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue("something went wrong");
+    }
+  }
+);
+
+export const deleteProductFromCard = createAsyncThunk(
+  "productCard/deleteProductFromCard",
+  async (product, thunkAPI) => {
+    console.log(product);
+    const sessionId = await getStorageData("Session-ID");
+
+    // Get base URL from environment variable
+    const baseURL = process.env.REACT_APP_BETA_LIMITED_API_URL;
+
+    try {
+      for (const item of product) {
+        await axios.post(
+          `${baseURL}/subtract-from-cart?id=${item.productId}`,
+          {},
+          {
+            headers: {
+              "Session-Id": sessionId || null,
+            },
+          }
+        );
+      }
+      return { success: true };
     } catch (error) {
       return thunkAPI.rejectWithValue("something went wrong");
     }
@@ -97,6 +125,22 @@ const manageCardSlice = createSlice({
     [viewProductCard.rejected]: (state) => {
       state.isViewProductCardLoading = false;
       state.viewProductCardError = true;
+    },
+    // deleteProductFromCard
+    [deleteProductFromCard.pending]: (state) => {
+      state.isDeleteProductFromCardLoading = true;
+    },
+    [deleteProductFromCard.fulfilled]: (state, action) => {
+      state.isDeleteProductFromCardLoading = false;
+      state.deleteProductFromCardError = false;
+      state.deleteProductFromCardResp = action.payload;
+    },
+    [deleteProductFromCard.rejected]: (state) => {
+      state.isDeleteProductFromCardLoading = false;
+      state.deleteProductFromCardError = true;
+    },
+    [deleteProductFromCard.type]: (state, action) => {
+      state.viewProductCardResp = action.payload;
     },
   },
 });

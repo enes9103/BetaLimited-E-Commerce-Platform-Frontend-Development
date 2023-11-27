@@ -57,13 +57,14 @@ export default function ProductCard({ product }) {
     }
 
     // For Static structure
-    for (let i = 0; i < quantity; i++) {
-      dispatch(addToBasket({ ...product, quantity: 1 }));
-    }
-    setQuantity(0);
+    // for (let i = 0; i < quantity; i++) {
+    //   dispatch(addToBasket({ ...product, quantity: 1 }));
+    // }
+    // setQuantity(0);
 
     // For Service structure
-    dispatch(addProductToCard({ ...product, quantity: 1 }));
+    dispatch(addProductToCard({ ...product, quantity: quantity }));
+    setQuantity(0);
   };
 
   return (

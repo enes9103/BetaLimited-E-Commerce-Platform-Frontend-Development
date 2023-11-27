@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 // Custom Components
-import {SearchBar, ModeToggle, ShoppingCart} from "../index.js"
+import { SearchBar, ModeToggle, ShoppingCart } from "../index.js";
 import DarkLogo from "../../assets/icons/DarkLogo.jsx";
 import LightLogo from "../../assets/icons/LightLogo.jsx";
 // Redux
@@ -21,20 +21,23 @@ function Header({ mode, setMode, drawerOpen, setDrawerOpen }) {
   const dispatch = useDispatch();
 
   // For Static structure
-  const { basketItems } = useSelector((store) => store.manageBasket);
+  // const { basketItems } = useSelector((store) => store.manageBasket);
+
+  // const totalQuantity = basketItems.reduce(
+  //   (total, item) => total + item.quantity,
+  //   0
+  // );
+
   // For Service structure
-  const { addProductToCardResp, viewProductCardResp } = useSelector(
-    (store) => store.productCard
-  );
+  const {
+    addProductToCardResp,
+    viewProductCardResp,
+    deleteProductFromCardResp,
+  } = useSelector((store) => store.productCard);
 
   useEffect(() => {
     dispatch(viewProductCard());
-  }, [addProductToCardResp, dispatch]);
-
-  const totalQuantity = basketItems.reduce(
-    (total, item) => total + item.quantity,
-    0
-  );
+  }, [addProductToCardResp, deleteProductFromCardResp, dispatch]);
 
   return (
     <Box
@@ -115,8 +118,7 @@ function Header({ mode, setMode, drawerOpen, setDrawerOpen }) {
         </IconButton>
 
         <ShoppingCart
-          totalQuantity={totalQuantity}
-          basketItems={basketItems}
+          basketItems={viewProductCardResp}
           title_1="Product Name"
           title_2="Quantity"
           title_3="Unit Price"
