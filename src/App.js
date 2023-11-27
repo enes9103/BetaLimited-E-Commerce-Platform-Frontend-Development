@@ -1,25 +1,12 @@
-import logo from './logo.svg';
-import './App.css';
+import * as React from "react";
+import Layout from "./components/layouts/Layout.jsx";
+import CssBaseline from "@mui/joy/CssBaseline";
 
-function App() {
+export default function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <React.Suspense fallback={<div>Loading...</div>}>
+      <CssBaseline />
+      <Layout />
+    </React.Suspense>
   );
 }
-
-export default App;
