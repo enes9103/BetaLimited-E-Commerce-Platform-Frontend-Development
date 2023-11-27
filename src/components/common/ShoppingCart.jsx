@@ -36,7 +36,10 @@ const ShoppingCart = ({ basketItems, title_1, title_2, title_3, title_4 }) => {
       <Dropdown>
         <Badge
           badgeContent={
-            basketItems !== "Cart is empty." ? basketItems.length : 0
+            basketItems !== "Cart is empty." &&
+            basketItems?.filter((item) => item.quantity > 0)?.length !== 0
+              ? basketItems.length
+              : 0
           }
           variant="solid"
           sx={{ "& .MuiBadge-badge": { backgroundColor: "#c24b5a" } }}
@@ -53,7 +56,8 @@ const ShoppingCart = ({ basketItems, title_1, title_2, title_3, title_4 }) => {
           </MenuButton>
         </Badge>
 
-        {basketItems !== "Cart is empty." && basketItems?.filter((item) => item.quantity > 0)?.length === 0 ? (
+        {basketItems !== "Cart is empty." &&
+        basketItems?.filter((item) => item.quantity > 0)?.length === 0 ? (
           <Menu
             sx={{
               paddingInline: "10px",
@@ -99,26 +103,29 @@ const ShoppingCart = ({ basketItems, title_1, title_2, title_3, title_4 }) => {
                   </tr>
                 </thead>
                 <tbody>
-                  {basketItems !== "Cart is empty." && basketItems
-                    ?.filter((item) => item.quantity > 0)
-                    .map((item) => (
-                      <tr key={item.productId}>
-                        <td>{item.name}</td>
-                        <td>{item.quantity}</td>
-                        <td>{Number(item.price).toFixed(2)}</td>
-                        <td>{Number(item.price * item.quantity).toFixed(2)}</td>
-                        <td>
-                          <button
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              handleRemoveFromBasket(item.productId);
-                            }}
-                          >
-                            Sil
-                          </button>
-                        </td>
-                      </tr>
-                    ))}
+                  {basketItems !== "Cart is empty." &&
+                    basketItems
+                      ?.filter((item) => item.quantity > 0)
+                      .map((item) => (
+                        <tr key={item.productId}>
+                          <td>{item.name}</td>
+                          <td>{item.quantity}</td>
+                          <td>{Number(item.price).toFixed(2)}</td>
+                          <td>
+                            {Number(item.price * item.quantity).toFixed(2)}
+                          </td>
+                          <td>
+                            <button
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                handleRemoveFromBasket(item.productId);
+                              }}
+                            >
+                              Sil
+                            </button>
+                          </td>
+                        </tr>
+                      ))}
                 </tbody>
               </Table>
             </MenuItem>
