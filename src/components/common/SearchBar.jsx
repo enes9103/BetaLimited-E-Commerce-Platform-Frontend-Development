@@ -2,6 +2,7 @@ import * as React from "react";
 // Redux
 import { useSelector, useDispatch } from "react-redux";
 import { searchProducts } from "../../redux/slices/ProductSlice";
+import { clearSearchResults } from "../../redux/slices/ProductSlice";
 // MUI Components
 import Button from "@mui/joy/Button";
 import Input from "@mui/joy/Input";
@@ -19,6 +20,18 @@ const SearchBar = () => {
 
   const handleSearchProduct = () => {
     dispatch(searchProducts(searchValue));
+  };
+
+  const handleInputChange = (event) => {
+    const { value } = event.target;
+    setSearchValue(value);
+
+    if (value.trim() === "") {
+      dispatch(clearSearchResults());
+    } else {
+      // It can be used if you want to send a request whenever search data is entered into the input. Currently, only searching can be done with the Search Button.
+      // dispatch(searchProducts(value));
+    }
   };
 
   return (
@@ -63,7 +76,7 @@ const SearchBar = () => {
         <Input
           placeholder="Searching for..."
           required
-          onChange={(e) => setSearchValue(e.target.value)}
+          onChange={handleInputChange}
           sx={{
             marginLeft: "2px",
             border: "none",

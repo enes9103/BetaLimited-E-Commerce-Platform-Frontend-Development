@@ -1,5 +1,5 @@
 import axios from "axios";
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { createAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { getStorageData } from "../../helpers/StorageHelper";
 
 const initialState = {
@@ -61,6 +61,8 @@ export const searchProducts = createAsyncThunk(
   }
 );
 
+export const clearSearchResults = createAction("products/clearSearchResults");
+
 const productsSlice = createSlice({
   name: "getProducts",
   initialState,
@@ -91,6 +93,9 @@ const productsSlice = createSlice({
     [searchProducts.rejected]: (state) => {
       state.isSearchProductsLoading = false;
       state.searchProductsError = true;
+    },
+    [clearSearchResults]: (state) => {
+      state.searchProductsResp = [];
     },
   },
 });

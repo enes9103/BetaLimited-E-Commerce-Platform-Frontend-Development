@@ -1,7 +1,14 @@
 import * as React from "react";
 import PropTypes from "prop-types";
 // Custom Components
-import {Header, SideNav, Navigation, SideDrawer, ProductCard, MainContent} from "../index.js"
+import {
+  Header,
+  SideNav,
+  Navigation,
+  SideDrawer,
+  ProductCard,
+  MainContent,
+} from "../index.js";
 import DarkLogo from "../../assets/icons/DarkLogo.jsx";
 import LightLogo from "../../assets/icons/LightLogo.jsx";
 // Redux
@@ -46,6 +53,11 @@ export default function Layout() {
   React.useEffect(() => {
     dispatch(getProducts());
   }, []);
+
+  // If you want to retrieve data with the more button (when the service is compatible), the function to be used is
+  const handleLoadMore = () => {
+    dispatch(getProducts());
+  };
 
   return (
     <Root
