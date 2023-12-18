@@ -1,0 +1,143 @@
+{
+	"info": {
+		"_postman_id": "111aaada-5215-4ce5-890e-91d8d226b85a",
+		"name": "Interview Endpoints",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "24215138",
+		"_collection_link": "https://primelister-api.postman.co/workspace/PrimeLister---Developer-Team~c0130ef4-08ed-4d5c-811c-9245c1f124d8/collection/24215138-111aaada-5215-4ce5-890e-91d8d226b85a?action=share&source=collection_link&creator=24215138"
+	},
+	"item": [
+		{
+			"name": "Create Session",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://linkedin-cv-crawler.beta-limited.workers.dev/interview/createsession",
+					"protocol": "https",
+					"host": [
+						"linkedin-cv-crawler",
+						"beta-limited",
+						"workers",
+						"dev"
+					],
+					"path": [
+						"interview",
+						"createsession"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "List Products",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://linkedin-cv-crawler.beta-limited.workers.dev/interview/products",
+					"protocol": "https",
+					"host": [
+						"linkedin-cv-crawler",
+						"beta-limited",
+						"workers",
+						"dev"
+					],
+					"path": [
+						"interview",
+						"products"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Search Product",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://linkedin-cv-crawler.beta-limited.workers.dev/interview/search?name=fruit",
+					"protocol": "https",
+					"host": [
+						"linkedin-cv-crawler",
+						"beta-limited",
+						"workers",
+						"dev"
+					],
+					"path": [
+						"interview",
+						"search"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "fruit"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add to Cart",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Session-ID",
+						"value": "7vf1imzjb"
+					}
+				],
+				"url": {
+					"raw": "https://linkedin-cv-crawler.beta-limited.workers.dev/interview/add-to-cart?id=2",
+					"protocol": "https",
+					"host": [
+						"linkedin-cv-crawler",
+						"beta-limited",
+						"workers",
+						"dev"
+					],
+					"path": [
+						"interview",
+						"add-to-cart"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "View Cart",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Session-ID",
+						"value": "7vf1imzjb"
+					}
+				],
+				"url": {
+					"raw": "https://linkedin-cv-crawler.beta-limited.workers.dev/interview/view-cart",
+					"protocol": "https",
+					"host": [
+						"linkedin-cv-crawler",
+						"beta-limited",
+						"workers",
+						"dev"
+					],
+					"path": [
+						"interview",
+						"view-cart"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
